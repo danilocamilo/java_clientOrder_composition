@@ -48,5 +48,13 @@ public class Order {
 		orders.remove(order);
 	}
 	
+	public Double total() {
+		double total = 0;
+		for (OrderItem o : orders) {
+			total += o.subTotal();
+		}
+		return total;
+	}
+	
 	
 }
