@@ -40,6 +40,18 @@ public class Client {
 		this.birthDate = birthDate;
 	}
 	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Client: ");
+		sb.append(name);
+		sb.append("(" + birthDate + ") - ");
+		sb.append(email + "\n");
+		
+		
+		
+		return sb.toString();
+		}
+	
 	
 	
 }

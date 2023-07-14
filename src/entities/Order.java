@@ -1,5 +1,6 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,9 @@ public class Order {
 	private OrderStatus status;
 	
 	private List<OrderItem> orders = new ArrayList<>();
+	
+	SimpleDateFormat sdfSummary = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
 	
 	public Order() {
 	}
@@ -55,6 +59,16 @@ public class Order {
 		}
 		return total;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Order moment: ");
+		sb.append(sdfSummary.format(moment) + "\n");
+		sb.append(status + "\n");
+		
+		return sb.toString();
+		}
 	
 	
 }
