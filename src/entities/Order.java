@@ -11,19 +11,21 @@ public class Order {
 	private Date moment;
 	private OrderStatus status;
 	
-	private List<OrderItem> orders = new ArrayList<>();
+	private Client client;
 	
-	SimpleDateFormat sdfSummary = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy ");
 	
+	private List<OrderItem> items = new ArrayList<OrderItem>();
+		
 	public Order() {
 	}
-
-	public Order(Date moment, OrderStatus status) {
+	
+	public Order(Date moment, OrderStatus status, Client client) {
 		this.moment = moment;
 		this.status = status;
-	}
-
+		this.client = client;
+	}	
+	
 	public Date getMoment() {
 		return moment;
 	}
@@ -39,36 +41,48 @@ public class Order {
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
-	
-	public List<OrderItem> getOrder() {
-		return orders;
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public void addItem(OrderItem item) {
+		items.add(item);
 	}
 	
-	public void addItem (OrderItem order) {
-		orders.add(order);
-	}
-	
-	public void removeItem (OrderItem order) {
-		orders.remove(order);
+	public void removeItem(OrderItem item) {
+		items.remove(item);
 	}
 	
 	public Double total() {
-		double total = 0;
-		for (OrderItem o : orders) {
-			total += o.subTotal();
+		double sum = 0;
+		for (OrderItem it : items) {
+			sum += it.subTotal();
 		}
-		return total;
+		return sum; 
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Order moment: ");
-		sb.append(sdfSummary.format(moment) + "\n");
+		sb.append(sdf.format(moment) + "\n");
+		sb.append("Order status: ");
 		sb.append(status + "\n");
-		
-		return sb.toString();
+		sb.append("Client: ");
+		sb.append(client + "\n");
+		sb.append("Order items:\n");
+		for (OrderItem item : items) {
+			sb.append(item + "\n");
 		}
+		sb.append("Total price: $");
+		sb.append(String.format("%.2f", total()));
+		return sb.toString();
+	}	
 	
 	
 }
