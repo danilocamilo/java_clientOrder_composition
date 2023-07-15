@@ -13,7 +13,7 @@ public class Order {
 	
 	private Client client;
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy ");
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
 	private List<OrderItem> items = new ArrayList<OrderItem>();
 		
